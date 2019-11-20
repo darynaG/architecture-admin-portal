@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UsersComponent } from './users/users.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
+import {CdkDragDropConnectedSortingExampleComponent} from './task-component/task-view-component';
+import {AdminViewComponent} from './admin-view/admin-view-component';
 
 
 const routes: Routes = [
-  { path: 'users', component: UsersComponent },
-  { path: 'user-detail', component: UserDetailComponent },
-  { path : '', redirectTo : 'users', pathMatch : 'full'}
+  { path: 'adminPage', component: AdminViewComponent},
+  { path: 'task', component: CdkDragDropConnectedSortingExampleComponent}
 ];
 
 @NgModule({

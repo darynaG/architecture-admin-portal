@@ -1,0 +1,28 @@
+<div cdkDropListGroup>
+<div class="example-container">
+  <h2>To do</h2>
+  <div
+    cdkDropList
+    #requirementsList="cdkDropList"
+    [cdkDropListData]="requirements"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of requirements" cdkDrag>{{item}}</div>
+  </div>
+</div>
+<div  class="example-container" *ngFor="let type of types">
+  <h2>{{type.title}}</h2>
+  <div
+    cdkDropList
+    [cdkDropListData]="type.requirements"
+    [cdkDropListConnectedTo]="requirementsList"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of type.requirements" cdkDrag>{{item}}</div>
+  </div>
+  <div>
+  </div>
+</div>
+  <button (click)="onClick()">push</button>
+</div>
+

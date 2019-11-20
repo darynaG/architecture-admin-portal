@@ -1,0 +1,89 @@
+<div style="width: 100%" class="mat-elevation-z8" class="containerMat">
+
+    <mat-card>
+
+  <mat-table mat-table style="width: 100%" [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ingredient </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="description" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Value Type </mat-header-cell>
+      <mat-cell *matCellDef="let element" >{{element.description}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef style="flex: 1;justify-content: flex-end;" matTooltip="Available actions for items"> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let row" style="flex: 1;justify-content: flex-end;" (click)="$event.stopPropagation()">
+        <button mat-icon-button matTooltip="Show requirements"
+                (click)="expandRow(row)">
+          <mat-icon aria-label="Show matched">visibility</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Edit"
+                (click)="edit(row)">
+          <mat-icon aria-label="Edit threshold">edit</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Delete"
+                (click)="delete(row)">
+          <mat-icon aria-label="Delete">delete_forever</mat-icon>
+        </button>
+
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+      <div class="bottom-actions">
+    <button mat-raised-button (click)="create()">New specification</button>
+      </div>
+    </mat-card>
+
+  <mat-card *ngIf="showRequirement" style="margin-top: 15px;">
+  <mat-table matSort style="width: 100%" [dataSource]="dataSourceRequirement">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="text">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.text}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="typeId" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> type </mat-header-cell>
+      <mat-cell *matCellDef="let element" >{{element.typeId}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef style="flex: 1; justify-content: flex-end;" matTooltip="Available actions for items"> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let row" style="flex: 1;justify-content: flex-end;" (click)="$event.stopPropagation()">
+        <button mat-icon-button matTooltip="Edit"
+                (click)="editRequirement(row)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Delete"
+                (click)="deleteRequirement(row)">
+          <mat-icon aria-label="Delete">delete_forever</mat-icon>
+        </button>
+
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumnsRequirement"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumnsRequirement;"></mat-row>
+  </mat-table>
+    <div class="bottom-actions">
+      <button mat-raised-button (click)="createRequirement()">New requirement</button>
+      <button mat-raised-button (click)="closeRequirements()">Close</button>
+    </div>
+
+  </mat-card>
+</div>
