@@ -1,6 +1,8 @@
-<div cdkDropListGroup>
+<div cdkDropListGroup class="group">
+  <div class="leftSideContainer">
+
 <div class="example-container">
-  <h2>To do</h2>
+  <h2>Requirements</h2>
   <div
     cdkDropList
     #requirementsList="cdkDropList"
@@ -10,19 +12,25 @@
     <div class="example-box" *ngFor="let item of requirements" cdkDrag>{{item}}</div>
   </div>
 </div>
-<div  class="example-container" *ngFor="let type of types">
-  <h2>{{type.title}}</h2>
-  <div
-    cdkDropList
-    [cdkDropListData]="type.requirements"
-    [cdkDropListConnectedTo]="requirementsList"
-    class="example-list"
-    (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let item of type.requirements" cdkDrag>{{item}}</div>
   </div>
-  <div>
+  <div class="rightSideContainer">
+    <div  class="example-container" *ngFor="let type of types">
+      <h2>{{type.title}}</h2>
+      <div
+        cdkDropList
+        [cdkDropListData]="type.requirements"
+        [cdkDropListConnectedTo]="requirementsList"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of type.requirements" cdkDrag>{{item}}</div>
+      </div>
+      <div>
+      </div>
+    </div>
   </div>
-</div>
-  <button (click)="onClick()">push</button>
 </div>
 
+<div class = "bottom-actions">
+  <button mat-raised-button (click)="onClick()">Cancel</button>
+  <button mat-raised-button (click)="onClick()">Complete</button>
+</div>

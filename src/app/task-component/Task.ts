@@ -5,5 +5,6 @@ export class TaskElement {
 
 export class RequirementType {
   title: string;
+  id: number;
   requirements: Array<string>;
 }

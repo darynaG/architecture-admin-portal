@@ -59,7 +59,7 @@
 
     <ng-container matColumnDef="typeId" >
       <mat-header-cell *matHeaderCellDef mat-sort-header> type </mat-header-cell>
-      <mat-cell *matCellDef="let element" >{{element.typeId}}
+      <mat-cell *matCellDef="let element" >{{getType(element.typeId)}}
       </mat-cell>
     </ng-container>
 

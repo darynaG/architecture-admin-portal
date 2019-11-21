@@ -1,0 +1,35 @@
+.modal-container {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 45vw;
+  min-width: 250px;
+}
+.add-currency-form {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+.mat-dialog-container {
+  padding: 24px !important;
+}
+.modal-container mat-dialog-content mat-list mat-list-item {
+  width: 100%;
+  padding: 7px 0 7px 0;
+  margin-top: 10px;
+}
+.mat-dialog-content {
+  max-height: 100%;
+  overflow: hidden;
+}
+.modal__field {
+  width: 90%;
+  padding: 0 5px;
+}
+.actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 5px;
+}
+/*# sourceMappingURL=add-requirement-modal.component.css.map/
