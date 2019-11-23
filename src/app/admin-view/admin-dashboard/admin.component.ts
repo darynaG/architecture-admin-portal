@@ -28,11 +28,13 @@ export class AdminComponent implements OnInit {
   token: Observable<string>;
 
   types = [
-    {title: 'Type1', value: 1},
-    {title: 'Type2', value: 2},
-    {title: 'Type3', value: 3},
-    {title: 'Type4', value: 4},
-    {title: 'Type5', value: 5}
+    {title: 'Функціональні вимоги', value: 1},
+    {title: 'Вимоги до інтерфейсів', value: 2},
+    {title: 'Вимоги до продуктивності', value: 3},
+    {title: 'Вимоги безпеки', value: 4},
+    {title: 'Вимоги надійності', value: 5},
+    {title: 'Інші вимоги', value: 6}
+
   ];
 
   constructor(private service: AdminViewService,
@@ -86,7 +88,7 @@ export class AdminComponent implements OnInit {
 
   delete(specification: Specification) {
     const c = specification;
-    const message = `Are you sure you want to delete Specification #${c.id} for ${c.description} ?`;
+    const message = `Are you sure you want to delete Specification ${c.name} ?`;
 
     if (confirm(message)) {
       this.service.deleteSpecification(c.id).subscribe(() => {
@@ -102,7 +104,8 @@ export class AdminComponent implements OnInit {
   }
 
   getRequirementList() {
-    this.service.getAllRequirements().subscribe(data =>
+    // getAllRequirements(this.specificationId)
+    this.service.getAllRequirementsBySpecification(this.specificationId).subscribe(data =>
     this.dataSourceRequirement.data = data.content);
   }
 
@@ -137,8 +140,9 @@ export class AdminComponent implements OnInit {
 
   deleteRequirement(requirement: Requirement) {
     const c = requirement;
-    const message = `Are you sure you want to delete requirement #${c.id} for ${c.text}, ${c.typeId} ?`;
-
+    const message = `Are you sure you want to delete requirement  ${c.text} ?`;
+    console.log(this.specificationId);
+    console.log(c.id);
     if (confirm(message)) {
       this.service.deleteRequirement(this.specificationId, c.id).subscribe(() => {
         this.getRequirementList();

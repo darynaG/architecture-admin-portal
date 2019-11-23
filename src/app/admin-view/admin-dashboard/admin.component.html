@@ -4,17 +4,17 @@
 
   <mat-table mat-table style="width: 100%" [dataSource]="dataSource">
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> № </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Ingredient </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="description" >
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Value Type </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
       <mat-cell *matCellDef="let element" >{{element.description}}
       </mat-cell>
     </ng-container>
@@ -48,17 +48,17 @@
   <mat-card *ngIf="showRequirement" style="margin-top: 15px;">
   <mat-table matSort style="width: 100%" [dataSource]="dataSourceRequirement">
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> № </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="text">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> name </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.text}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="typeId" >
-      <mat-header-cell *matHeaderCellDef mat-sort-header> type </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
       <mat-cell *matCellDef="let element" >{{getType(element.typeId)}}
       </mat-cell>
     </ng-container>

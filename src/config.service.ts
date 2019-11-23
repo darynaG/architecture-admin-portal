@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class ConfigService {
-  private static apiUrl = '';
+  private static apiUrl = 'http://localhost:5000';
 
   public static getEnvironmentVariable(value) {
     return  this.apiUrl;

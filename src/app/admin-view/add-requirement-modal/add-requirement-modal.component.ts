@@ -25,11 +25,12 @@ export class AddRequirementModalComponent implements OnInit {
   resError: any;
   isDisabled = true;
   types = [
-    {title: 'Type1', value: 1},
-    {title: 'Type2', value: 2},
-    {title: 'Type3', value: 3},
-    {title: 'Type4', value: 4},
-    {title: 'Type5', value: 5}
+    {title: 'Функціональні вимоги', value: 1},
+    {title: 'Вимоги до інтерфейсів', value: 2},
+    {title: 'Вимоги до продуктивності', value: 3},
+    {title: 'Вимоги безпеки', value: 4},
+    {title: 'Вимоги надійності', value: 5},
+    {title: 'Інші вимоги', value: 6}
   ]
 
   static valueOrEmpty(value: any) {
