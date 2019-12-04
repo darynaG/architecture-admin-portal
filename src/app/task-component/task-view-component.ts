@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import {RequirementType} from './Task';
+import {Requirement, RequirementType, TaskElement} from './Task';
 import {TaskService} from './task-view-component.service';
+import {ActivatedRoute} from '@angular/router';
 
 /**
  * @title Drag&Drop connected sorting
@@ -12,28 +13,31 @@ import {TaskService} from './task-view-component.service';
   styleUrls: ['task-view-component.css'],
 })
 
-export class CdkDragDropConnectedSortingExampleComponent {
-  constructor(private service: TaskService) {}
+export class CdkDragDropConnectedSortingExampleComponent implements OnInit {
+  constructor(private service: TaskService,
+              private route: ActivatedRoute) {}
 
   types: RequirementType[] = [
-    {title: 'Type1', id: 1, requirements: []},
-    {title: 'Type2', id: 2, requirements: []},
-    {title: 'Type3', id: 3, requirements: []},
-    {title: 'Type4', id: 4, requirements: []},
-    {title: 'Type5', id: 5, requirements: []}
+    {title: 'Функціональні вимоги', value: 1, requirements: []},
+    {title: 'Вимоги до інтерфейсів', value: 2, requirements: []},
+    {title: 'Вимоги до продуктивності', value: 3, requirements: []},
+    {title: 'Вимоги безпеки', value: 4, requirements: []},
+    {title: 'Вимоги надійності', value: 5, requirements: []},
+    {title: 'Інші вимоги', value: 6, requirements: []}
   ];
 
-  requirements = [
-    'Get to work',
-    'Pick up groceries',
-    'Go home',
-    'Fall asleep',
-    'do smth',
-    'do smth else'
-  ];
+  requirements: Requirement[];
+  taskId: number;
+
+  sessionId: number;
 
 
-  drop(event: CdkDragDrop<string[]>) {
+  ngOnInit() {
+    this.sessionId = this.route.snapshot.queryParams.sessionId;
+    this.getTask();
+  }
+
+  drop(event: CdkDragDrop<Requirement[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -45,10 +49,19 @@ export class CdkDragDropConnectedSortingExampleComponent {
   }
 
   getTask() {
-
+    this.service.getTask(this.sessionId).subscribe(content => {
+      this.requirements = content.requirements;
+      this.taskId = content.id;
+    });
   }
 
   onClick() {
-    console.log(this.types);
+    this.service.completeTask(this.sessionId, this.taskId, this.types)
+      .subscribe(() => console.log(this.taskId, this.types));
+  }
+
+  cancelTask() {
+    this.service.cancelTask(this.sessionId, this.taskId, this.types)
+      .subscribe(() => console.log(this.taskId, this.types));
   }
 }

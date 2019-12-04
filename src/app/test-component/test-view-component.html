@@ -1,0 +1,13 @@
+<div>
+  <form [formGroup]="form">
+  <mat-select placeholder="Виберіть тему" formControlName="specification">
+    <mat-option *ngFor="let specification of specifications" [value]="specification.value">
+      {{specification.title}}
+    </mat-option>
+  </mat-select>
+  </form>
+</div>
+
+<div class = "bottom-actions">
+  <button mat-raised-button (click)="startTest($event)">Start</button>
+</div>

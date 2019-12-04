@@ -1,10 +1,15 @@
 export class TaskElement {
-  requirements: Array<string>;
-  requirementsTypes: Array<string>;
+  id: number;
+  requirements: [];
 }
 
 export class RequirementType {
   title: string;
+  value: number;
+  requirements: Requirement[];
+}
+
+export class Requirement {
   id: number;
-  requirements: Array<string>;
+  text: string;
 }

@@ -24,6 +24,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AddRequirementModalComponent} from './admin-view/add-requirement-modal/add-requirement-modal.component';
 
 import {AuthModule} from './auth/auth.module';
+import {TestViewComponent} from './test-component/test-view-component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {AuthModule} from './auth/auth.module';
     AppComponent,
     CdkDragDropConnectedSortingExampleComponent,
     AddSpecificationModalComponent,
-    AddRequirementModalComponent
+    AddRequirementModalComponent,
+    TestViewComponent
   ],
   entryComponents: [
     AddSpecificationModalComponent,

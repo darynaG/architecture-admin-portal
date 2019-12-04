@@ -9,7 +9,7 @@
     [cdkDropListData]="requirements"
     class="example-list"
     (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let item of requirements" cdkDrag>{{item}}</div>
+    <div class="example-box" *ngFor="let item of requirements" cdkDrag>{{item.text}}</div>
   </div>
 </div>
   </div>
@@ -22,7 +22,7 @@
         [cdkDropListConnectedTo]="requirementsList"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of type.requirements" cdkDrag>{{item}}</div>
+        <div class="example-box" *ngFor="let item of type.requirements" cdkDrag>{{item.text}}</div>
       </div>
       <div>
       </div>
@@ -31,6 +31,6 @@
 </div>
 
 <div class = "bottom-actions">
-  <button mat-raised-button (click)="onClick()">Cancel</button>
+  <button mat-raised-button (click)="cancelTask()">Cancel</button>
   <button mat-raised-button (click)="onClick()">Complete</button>
 </div>
