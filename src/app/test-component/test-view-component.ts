@@ -3,6 +3,8 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 import {TestService} from './test-view-component.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import { Router } from '@angular/router';
+import {AdminViewService} from '../admin-view/admin-view-component.service';
+import {SpecificationCollection} from '../admin-view/Specification';
 
 
 
@@ -18,13 +20,12 @@ import { Router } from '@angular/router';
 export class TestViewComponent implements OnInit {
 
   form: FormGroup;
-  specifications = [{title: 'Specification 1', value: '1'},
-                    {title: 'Specification 2', value: '2'},
-                    {title: 'Specification 3', value: '3'}];
+  specifications: SpecificationCollection;
 
   constructor(private fb: FormBuilder,
               private router: Router,
-              private service: TestService) {}
+              private service: TestService,
+              private adminService: AdminViewService) {}
 
   ngOnInit() {
     this.initForm();
@@ -41,5 +42,10 @@ export class TestViewComponent implements OnInit {
     this.form = this.fb.group({
       specification: ['', []]
     });
+
+    this.adminService.getAllSpecifications().subscribe(
+      content => this.specifications = content
+    );
   }
+
 }
