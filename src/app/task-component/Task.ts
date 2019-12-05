@@ -17,3 +17,7 @@ export class Requirement {
 export class TaskEl  {
   content: TaskElement;
 }
+
+export class Session {
+  content: number;
+}

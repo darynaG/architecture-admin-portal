@@ -21,6 +21,7 @@ export class TestViewComponent implements OnInit {
 
   form: FormGroup;
   specifications: SpecificationCollection;
+  sessionId: number;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -35,9 +36,15 @@ export class TestViewComponent implements OnInit {
       $event.preventDefault();
       const test = this.form.value;
       const specificationId = test.specification;
-      this.router.navigate(['/test', specificationId, 'task'], {queryParams: {sessionId: '1'}});
+      const model = {
+        specification: specificationId
+      };
+      this.service.createSession(model).subscribe ( content => {
+          this.sessionId = content.content;
+          this.router.navigate(['/test', specificationId, 'task'], {queryParams: {sessionId: this.sessionId}});
+        }
+      );
   }
-
   initForm() {
     this.form = this.fb.group({
       specification: ['', []]
