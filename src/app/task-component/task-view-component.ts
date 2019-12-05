@@ -4,13 +4,14 @@ import {Requirement, RequirementType, TaskElement} from './Task';
 import {TaskService} from './task-view-component.service';
 import {ActivatedRoute} from '@angular/router';
 
+
 /**
  * @title Drag&Drop connected sorting
  */
 @Component({
   selector: 'app-cdk-drag-drop-connected-sorting-example',
   templateUrl: 'task-view-component.html',
-  styleUrls: ['task-view-component.css'],
+  styleUrls: ['task-view-component.less'],
 })
 
 export class CdkDragDropConnectedSortingExampleComponent implements OnInit {
@@ -28,7 +29,6 @@ export class CdkDragDropConnectedSortingExampleComponent implements OnInit {
 
   requirements: Requirement[];
   taskId: number;
-
   sessionId: number;
 
 
@@ -50,8 +50,8 @@ export class CdkDragDropConnectedSortingExampleComponent implements OnInit {
 
   getTask() {
     this.service.getTask(this.sessionId).subscribe(content => {
-      this.requirements = content.requirements;
-      this.taskId = content.id;
+      this.requirements = content.content.requirements;
+      this.taskId = content.content.id;
     });
   }
 

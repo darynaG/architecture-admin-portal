@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ConfigService} from '../../config.service';
 import {Observable} from 'rxjs';
-import {TaskElement} from './Task';
+import {TaskEl, TaskElement} from './Task';
 
 import { of } from 'rxjs';
 
@@ -12,18 +12,16 @@ import { of } from 'rxjs';
 export class TaskService {
   constructor(private http: HttpClient) { }
 
-  getTask(id): Observable<any> {
-    const url = ConfigService.getApiUrl() + `/api/sessions/${id}/task`;
+  getTask(id): Observable<TaskEl> {
+    const url = ConfigService.getApiUrl() + `/api/session/${id}/task`;
 
-   /* const task = {id: 123445454, requirements: [{id: 1, text: 'etet'}, {id: 2, text: 'etghfget'}, {id: 3, text: 'etefdg'}, {id: 4, text: 'etggrhfgdhd fg fget'}]};
-    return of(task);*/
-    return this.http.get<any>(url, {
+    return this.http.get<TaskEl>(url, {
       withCredentials: false
     });
   }
 
   cancelTask(sessionId, id, model) {
-    const url = ConfigService.getApiUrl() + `/api/sessions/${sessionId}/task/${id}`;
+    const url = ConfigService.getApiUrl() + `/api/session/${sessionId}/task/${id}`;
 
     return this.http.post<TaskElement>(url, model, {
       withCredentials: false
@@ -31,7 +29,7 @@ export class TaskService {
   }
 
   completeTask(sessionId, id, model) {
-    const url = ConfigService.getApiUrl() + `/api/sessions/${sessionId}/task/${id}`;
+    const url = ConfigService.getApiUrl() + `/api/session/${sessionId}/task/${id}`;
 
     return this.http.post<TaskElement>(url, model, {
       withCredentials: false

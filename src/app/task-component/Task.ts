@@ -1,6 +1,6 @@
 export class TaskElement {
   id: number;
-  requirements: [];
+  requirements: Requirement[];
 }
 
 export class RequirementType {
@@ -12,4 +12,8 @@ export class RequirementType {
 export class Requirement {
   id: number;
   text: string;
+}
+
+export class TaskEl  {
+  content: TaskElement;
 }
