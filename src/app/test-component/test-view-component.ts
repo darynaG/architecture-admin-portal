@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import {AdminViewService} from '../admin-view/admin-view-component.service';
 import {Specification, SpecificationCollection} from '../admin-view/Specification';
 import {AuthService} from '../auth/auth.service';
+import {SpecificationDetails} from '../task-component/Task';
 
 
 
@@ -22,10 +23,11 @@ export class TestViewComponent implements OnInit {
 
   form: FormGroup;
   specifications: Specification[];
-  selectedSepecification: number;
+  selectedSpecificationDetails: SpecificationDetails;
   sessionId: number;
   currentId: number;
-  bestScore: number;
+  isShown = false;
+
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -65,14 +67,26 @@ export class TestViewComponent implements OnInit {
   }
 
   selectedSpecification(tab: any) {
-    this.getBestScore();
+    // this.getBestScore();
+    this.getSpecifications();
   }
 
   getBestScore() {
     const test = this.form.value;
     const specificationId = test.specification;
     this.testService.getBestScore(this.currentId, specificationId).subscribe(
-      data => this.bestScore = data.content
+      data => this. selectedSpecificationDetails.score = data.content
+    );
+  }
+
+  getSpecifications() {
+    const test = this.form.value;
+    const specificationId = test.specification;
+    this.testService.getSpecifications(this.currentId, specificationId).subscribe(
+      data => {
+        this.selectedSpecificationDetails = data.content;
+        this.isShown = true;
+      }
     );
   }
 }

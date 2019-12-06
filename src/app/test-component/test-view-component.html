@@ -7,8 +7,10 @@
   </mat-select>
   </form>
 
-  <div>
-    {{bestScore}}
+  <div *ngIf="isShown">
+    {{selectedSpecificationDetails.name}}
+    {{selectedSpecificationDetails.score}}
+    {{selectedSpecificationDetails.description}}
   </div>
 </div>
 

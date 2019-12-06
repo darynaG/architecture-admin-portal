@@ -21,3 +21,15 @@ export class TaskEl  {
 export class Session {
   content: number;
 }
+
+export class SpecificationDetails {
+  id: number;
+  name: string;
+  description: string;
+  attempts: number;
+  score: number;
+}
+
+export class SpecificationDetailsCollection {
+  content: SpecificationDetails;
+}

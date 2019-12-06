@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ConfigService} from '../../config.service';
-import {Session} from '../task-component/Task';
+import {Session, SpecificationDetailsCollection} from '../task-component/Task';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +10,13 @@ import {Session} from '../task-component/Task';
 export class TestService {
   constructor(private http: HttpClient) { }
 
-  getSpecifications(id) {
-
+  getSpecifications(accountId, specificationId): Observable<SpecificationDetailsCollection> {
+    const url = ConfigService.getApiUrl() + `/api/accounts/${accountId}/specification/${specificationId}/update`;
+    return this.http.get<any>(url,  {
+      withCredentials: false
+    });
   }
+
   createSession(model): Observable<any> {
     const url = ConfigService.getApiUrl() + `/api/sessions`;
     return this.http.put<Session>(url, model, {
@@ -26,5 +30,7 @@ export class TestService {
       withCredentials: false
     });
   }
+
+
 
 }
