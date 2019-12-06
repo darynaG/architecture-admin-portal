@@ -63,13 +63,13 @@ export class CdkDragDropConnectedSortingExampleComponent implements OnInit {
     }
 
     // TODO!
-    /*this.service.completeTask(this.sessionId, this.taskId, model)
+    this.service.completeTask(this.sessionId,  model)
       .subscribe(() =>
         this.router.navigate(['/test', 'result'],
-          {queryParams: {sessionId: this.sessionId}}));*/
+          {queryParams: {sessionId: this.sessionId}}));
 
-    this.router.navigate(['/test', 'result'],
-      {queryParams: {sessionId: this.sessionId}});
+    /*this.router.navigate(['/test', 'result'],
+      {queryParams: {sessionId: this.sessionId}});*/
   }
 
   cancelTask() {

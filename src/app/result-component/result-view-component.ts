@@ -34,7 +34,7 @@ export class ResultViewComponent implements OnInit {
   }
 
   getResults() {
-  this.resultService.getTestResults(this.currentId, this.sessionId).subscribe(
+  this.resultService.getTestResults(this.sessionId).subscribe(
     data => this.result = data.content
   );
   }

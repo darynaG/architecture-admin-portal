@@ -28,10 +28,10 @@ export class TaskService {
     });
   }
 
-  completeTask(sessionId, id, model) {
-    const url = ConfigService.getApiUrl() + `/api/session/${sessionId}/task/${id}`;
+  completeTask(sessionId, model) {
+    const url = ConfigService.getApiUrl() + `/api/session/${sessionId}`;
 
-    return this.http.post<TaskElement>(url, model, {
+    return this.http.post<any>(url, model, {
       withCredentials: false
     });
   }
