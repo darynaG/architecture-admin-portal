@@ -1,5 +1,5 @@
 .example-container {
-  width: 500px;
+  width: 25vw;
   max-width: 100%;
   margin: 0 25px 25px 0;
   display: inline-block;
@@ -11,8 +11,19 @@
   min-height: 60px;
   background: white;
   border-radius: 4px;
-  overflow: hidden;
   display: block;
+  max-height: 75vh;
+  overflow: auto;
+}
+
+.example-list-answer {
+  border: solid 1px #ccc;
+  min-height: 60px;
+  background: white;
+  border-radius: 4px;
+  display: block;
+  max-height: 25vh;
+  overflow: auto;
 }
 
 .example-box {
@@ -58,6 +69,7 @@
   justify-content: flex-end;
   padding-top: 18px;
   padding-right: 8px;
+
 }
 
 .mat-raised-button {
@@ -69,12 +81,10 @@
 }
 
 .rightSideContainer {
- // display: flex;
-  //flex-direction: column;
   column-count: 2;
   column-gap: 40px;
-
   justify-content: right;
+
 }
 
 .group{

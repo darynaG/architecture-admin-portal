@@ -4,7 +4,8 @@ import {TestService} from './test-view-component.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import { Router } from '@angular/router';
 import {AdminViewService} from '../admin-view/admin-view-component.service';
-import {SpecificationCollection} from '../admin-view/Specification';
+import {Specification, SpecificationCollection} from '../admin-view/Specification';
+import {AuthService} from '../auth/auth.service';
 
 
 
@@ -14,22 +15,28 @@ import {SpecificationCollection} from '../admin-view/Specification';
 @Component({
   selector: 'app-test-view-component',
   templateUrl: 'test-view-component.html',
-  styleUrls: ['test-view-component.css'],
+  styleUrls: ['test-view-component.less'],
 })
 
 export class TestViewComponent implements OnInit {
 
   form: FormGroup;
-  specifications: SpecificationCollection;
+  specifications: Specification[];
+  selectedSepecification: number;
   sessionId: number;
+  currentId: number;
+  bestScore: number;
 
   constructor(private fb: FormBuilder,
               private router: Router,
               private service: TestService,
-              private adminService: AdminViewService) {}
+              private adminService: AdminViewService,
+              private testService: TestService,
+              private authService: AuthService) {}
 
   ngOnInit() {
     this.initForm();
+    this.currentId = this.authService.getCurrentUser().id;
   }
 
   startTest($event) {
@@ -45,14 +52,27 @@ export class TestViewComponent implements OnInit {
         }
       );
   }
+
   initForm() {
     this.form = this.fb.group({
       specification: ['', []]
     });
 
     this.adminService.getAllSpecifications().subscribe(
-      content => this.specifications = content
+      content => this.specifications = content.content
     );
+
   }
 
+  selectedSpecification(tab: any) {
+    this.getBestScore();
+  }
+
+  getBestScore() {
+    const test = this.form.value;
+    const specificationId = test.specification;
+    this.testService.getBestScore(this.currentId, specificationId).subscribe(
+      data => this.bestScore = data.content
+    );
+  }
 }

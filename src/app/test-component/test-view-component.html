@@ -1,12 +1,15 @@
 <div>
   <form [formGroup]="form">
-  <mat-select placeholder="Виберіть тему" formControlName="specification">
-    <mat-option *ngFor="let specification of specifications.content" [value]="specification.id">
+  <mat-select placeholder="Виберіть тему" formControlName="specification" (selectionChange)="selectedSpecification($event)">
+    <mat-option *ngFor="let specification of specifications" [value]="specification.id">
       {{specification.name}}
     </mat-option>
   </mat-select>
   </form>
 
+  <div>
+    {{bestScore}}
+  </div>
 </div>
 
 <div class = "bottom-actions">

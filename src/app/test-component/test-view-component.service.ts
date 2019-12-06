@@ -20,4 +20,11 @@ export class TestService {
     });
   }
 
+  getBestScore(accountId, specificationId): Observable<any> {
+    const url = ConfigService.getApiUrl() + `/api/accounts/${accountId}/bestscore/${specificationId}`;
+    return this.http.get<any>(url,  {
+      withCredentials: false
+    });
+  }
+
 }

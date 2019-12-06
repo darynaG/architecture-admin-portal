@@ -1,5 +1,5 @@
 .example-container {
-  width: 400px;
+  width: 25vw;
   max-width: 100%;
   margin: 0 25px 25px 0;
   display: inline-block;
@@ -10,8 +10,18 @@
   min-height: 60px;
   background: white;
   border-radius: 4px;
-  overflow: hidden;
   display: block;
+  max-height: 75vh;
+  overflow: auto;
+}
+.example-list-answer {
+  border: solid 1px #ccc;
+  min-height: 60px;
+  background: white;
+  border-radius: 4px;
+  display: block;
+  max-height: 25vh;
+  overflow: auto;
 }
 .example-box {
   padding: 20px 10px;
@@ -56,8 +66,8 @@
   justify-content: left;
 }
 .rightSideContainer {
-  display: flex;
-  flex-direction: column;
+  column-count: 2;
+  column-gap: 40px;
   justify-content: right;
 }
 .group {

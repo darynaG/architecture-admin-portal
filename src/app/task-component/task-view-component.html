@@ -1,4 +1,4 @@
-<div cdkDropListGroup class="group">
+<div class="group">
   <div class="leftSideContainer">
 
 <div class="example-container">
@@ -20,7 +20,7 @@
         cdkDropList
         [cdkDropListData]="type.requirements"
         [cdkDropListConnectedTo]="requirementsList"
-        class="example-list"
+        class="example-list-answer"
         (cdkDropListDropped)="drop($event)">
         <div class="example-box" *ngFor="let item of type.requirements" cdkDrag>{{item.text}}</div>
       </div>
@@ -31,6 +31,6 @@
 </div>
 
 <div class = "bottom-actions">
-  <button mat-raised-button (click)="cancelTask()">Cancel</button>
-  <button mat-raised-button (click)="onClick()">Complete</button>
+    <button mat-raised-button (click)="cancelTask()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onClick()">Complete</button>
 </div>
