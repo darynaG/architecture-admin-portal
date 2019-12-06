@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import {Requirement, RequirementType, TaskElement} from './Task';
+import {Requirement, RequirementType, TaskElement, TestAnswer} from './Task';
 import {TaskService} from './task-view-component.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
@@ -57,16 +57,27 @@ export class CdkDragDropConnectedSortingExampleComponent implements OnInit {
   }
 
   onClick() {
-    this.router.navigate(['/test', 'result'],
-      {queryParams: {sessionId: this.sessionId}});
-   /* this.service.completeTask(this.sessionId, this.taskId, this.types)
+    const model: TestAnswer = {
+      requirementsUnselected: this.requirements,
+      requirements: this.types
+    }
+
+    // TODO!
+    /*this.service.completeTask(this.sessionId, this.taskId, model)
       .subscribe(() =>
         this.router.navigate(['/test', 'result'],
           {queryParams: {sessionId: this.sessionId}}));*/
+
+    this.router.navigate(['/test', 'result'],
+      {queryParams: {sessionId: this.sessionId}});
   }
 
   cancelTask() {
-    this.service.cancelTask(this.sessionId, this.taskId, this.types)
-      .subscribe(() => console.log(this.taskId, this.types));
+    const model: TestAnswer = {
+      requirementsUnselected: this.requirements,
+      requirements: this.types
+    }
+    this.service.cancelTask(this.sessionId, this.taskId, model)
+      .subscribe(() => console.log(this.taskId, model));
   }
 }

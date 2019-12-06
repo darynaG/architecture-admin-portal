@@ -18,13 +18,13 @@ export class ResultService {
     });
   }
 
-  getTestResults(accountId, sessionId): Observable<TestResult> {
+  getTestResults(accountId, sessionId): Observable<any> {
     /*const url = ConfigService.getApiUrl() + `/api/specifications/${specificationId}/account/${accountId}`;
     return this.http.get<any>(url,  {
       withCredentials: false
     });*/
     // TODO!
-    return of({score: 65, passed: true, passingScore: 60, percentage: 60});
+    return of({content: {score: 65, passed: true, passingScore: 60, percentage: 60}});
   }
 
   getSpecificationDetailsForSession(sessionId): Observable<SpecificationDetailsCollection> {

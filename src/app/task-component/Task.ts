@@ -40,3 +40,7 @@ export class TestResult {
   passingScore: number;
   percentage: number;
 }
+export class TestAnswer {
+  requirementsUnselected: Requirement[];
+  requirements: RequirementType[];
+}

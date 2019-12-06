@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Specification} from '../admin-view/Specification';
 import {AuthService} from '../auth/auth.service';
-import {SpecificationDetails} from '../task-component/Task';
+import {SpecificationDetails, TestResult} from '../task-component/Task';
 import {TestService} from '../test-component/test-view-component.service';
 
 @Component({
@@ -15,6 +15,7 @@ import {TestService} from '../test-component/test-view-component.service';
 
 export class ResultViewComponent implements OnInit {
   selectedSpecificationDetails: SpecificationDetails;
+  result: TestResult;
   specificationId: number;
   sessionId: number;
   currentId: number;
@@ -34,7 +35,7 @@ export class ResultViewComponent implements OnInit {
 
   getResults() {
   this.resultService.getTestResults(this.currentId, this.sessionId).subscribe(
-    data => console.log(data)
+    data => this.result = data.content
   );
   }
 
