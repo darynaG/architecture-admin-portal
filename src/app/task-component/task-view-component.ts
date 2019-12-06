@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {Requirement, RequirementType, TaskElement} from './Task';
 import {TaskService} from './task-view-component.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 /**
@@ -16,6 +16,7 @@ import {ActivatedRoute} from '@angular/router';
 
 export class CdkDragDropConnectedSortingExampleComponent implements OnInit {
   constructor(private service: TaskService,
+              private router: Router,
               private route: ActivatedRoute) {}
 
   types: RequirementType[] = [
@@ -56,8 +57,12 @@ export class CdkDragDropConnectedSortingExampleComponent implements OnInit {
   }
 
   onClick() {
-    this.service.completeTask(this.sessionId, this.taskId, this.types)
-      .subscribe(() => console.log(this.taskId, this.types));
+    this.router.navigate(['/test', 'result'],
+      {queryParams: {sessionId: this.sessionId}});
+   /* this.service.completeTask(this.sessionId, this.taskId, this.types)
+      .subscribe(() =>
+        this.router.navigate(['/test', 'result'],
+          {queryParams: {sessionId: this.sessionId}}));*/
   }
 
   cancelTask() {

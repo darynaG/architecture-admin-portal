@@ -17,9 +17,9 @@ export class TestService {
     });
   }
 
-  createSession(model): Observable<any> {
-    const url = ConfigService.getApiUrl() + `/api/sessions`;
-    return this.http.put<Session>(url, model, {
+  createSession(specificationId, accountId): Observable<any> {
+    const url = ConfigService.getApiUrl() + `/api/session/specifications/${specificationId}/account/${accountId}`;
+    return this.http.put<Session>(url, {
       withCredentials: false
     });
   }

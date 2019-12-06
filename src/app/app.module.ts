@@ -25,6 +25,7 @@ import {AddRequirementModalComponent} from './admin-view/add-requirement-modal/a
 
 import {AuthModule} from './auth/auth.module';
 import {TestViewComponent} from './test-component/test-view-component';
+import {ResultViewComponent} from './result-component/result-view-component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {TestViewComponent} from './test-component/test-view-component';
     CdkDragDropConnectedSortingExampleComponent,
     AddSpecificationModalComponent,
     AddRequirementModalComponent,
-    TestViewComponent
+    TestViewComponent,
+    ResultViewComponent
   ],
   entryComponents: [
     AddSpecificationModalComponent,

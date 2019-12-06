@@ -42,17 +42,14 @@ export class TestViewComponent implements OnInit {
   }
 
   startTest($event) {
-      $event.preventDefault();
-      const test = this.form.value;
-      const specificationId = test.specification;
-      const model = {
-        specification: specificationId
-      };
-      this.service.createSession(model).subscribe ( content => {
-          this.sessionId = content.content;
-          this.router.navigate(['/test', specificationId, 'task'], {queryParams: {sessionId: this.sessionId}});
-        }
-      );
+    $event.preventDefault();
+    const test = this.form.value;
+    const specificationId = test.specification;
+    this.service.createSession(specificationId, this.currentId).subscribe ( content => {
+        this.sessionId = content.content;
+        this.router.navigate(['/test', specificationId, 'task'], {queryParams: {sessionId: this.sessionId}});
+      }
+    );
   }
 
   initForm() {

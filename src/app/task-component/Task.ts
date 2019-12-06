@@ -33,3 +33,10 @@ export class SpecificationDetails {
 export class SpecificationDetailsCollection {
   content: SpecificationDetails;
 }
+
+export class TestResult {
+  score: number;
+  passed: boolean;
+  passingScore: number;
+  percentage: number;
+}
