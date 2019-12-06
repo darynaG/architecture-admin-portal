@@ -11,7 +11,7 @@ export class TestService {
   constructor(private http: HttpClient) { }
 
   getSpecifications(accountId, specificationId): Observable<SpecificationDetailsCollection> {
-    const url = ConfigService.getApiUrl() + `/api/accounts/${accountId}/specification/${specificationId}/update`;
+    const url = ConfigService.getApiUrl() + `/api/specifications/${specificationId}/account/${accountId}`;
     return this.http.get<any>(url,  {
       withCredentials: false
     });

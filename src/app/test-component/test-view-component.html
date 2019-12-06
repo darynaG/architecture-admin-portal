@@ -7,13 +7,27 @@
   </mat-select>
   </form>
 
-  <div *ngIf="isShown">
-    {{selectedSpecificationDetails.name}}
-    {{selectedSpecificationDetails.score}}
-    {{selectedSpecificationDetails.description}}
-  </div>
+  <mat-card *ngIf="isShown" class="specification-details-container">
+      <mat-card-title>{{selectedSpecificationDetails.name}}</mat-card-title>
+      <mat-card-content class="spec-content">
+        <div class="left-container">
+          {{selectedSpecificationDetails.description}}
+        </div>
+        <div class="right-container">
+          <div style="display: inline">
+             <h5>Your score:  </h5>
+            <span> {{selectedSpecificationDetails.score}} </span>
+          </div>
+          <div style="display: inline">
+             <h5>Attempts left:  </h5>
+            <span> {{selectedSpecificationDetails.attempts}}/3 </span>
+          </div>
+        </div>
+      </mat-card-content>
+  </mat-card>
+
 </div>
 
 <div class = "bottom-actions">
-  <button mat-raised-button (click)="startTest($event)">Start</button>
+  <button mat-raised-button (click)="startTest($event)" [disabled]="selectedSpecificationDetails.attempts === 0">Start</button>
 </div>

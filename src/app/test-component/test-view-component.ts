@@ -88,5 +88,7 @@ export class TestViewComponent implements OnInit {
         this.isShown = true;
       }
     );
+   // this.selectedSpecificationDetails = {id: 10, attempts: 3, description: 'grdefjghirghiergh  r ergjio  djgfgj ', name: 'NAME SPECIFICATION NAME', score: 45};
+   // this.isShown = true;
   }
 }
