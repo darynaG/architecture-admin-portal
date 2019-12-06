@@ -29,5 +29,5 @@
 </div>
 
 <div class = "bottom-actions">
-  <button mat-raised-button (click)="startTest($event)" [disabled]="selectedSpecificationDetails.attempts === 0">Start</button>
+  <button mat-raised-button (click)="startTest($event)" [disabled]="shouldBeDisabled">Start</button>
 </div>

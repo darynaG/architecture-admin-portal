@@ -27,7 +27,7 @@ export class TestViewComponent implements OnInit {
   sessionId: number;
   currentId: number;
   isShown = false;
-
+  shouldBeDisabled = false;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -86,9 +86,8 @@ export class TestViewComponent implements OnInit {
       data => {
         this.selectedSpecificationDetails = data.content;
         this.isShown = true;
+        data.content.attempts === 0 ? this.shouldBeDisabled = true : this.shouldBeDisabled = false;
       }
     );
-   // this.selectedSpecificationDetails = {id: 10, attempts: 3, description: 'grdefjghirghiergh  r ergjio  djgfgj ', name: 'NAME SPECIFICATION NAME', score: 45};
-   // this.isShown = true;
   }
 }
