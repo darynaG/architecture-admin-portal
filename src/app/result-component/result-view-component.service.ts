@@ -26,7 +26,7 @@ export class ResultService {
   }
 
   getSpecificationDetailsForSession(sessionId): Observable<SpecificationDetailsCollection> {
-    const url = ConfigService.getApiUrl() + `/api/session/${sessionId}`;
+    const url = ConfigService.getApiUrl() + `/api/session/${sessionId}/specification`;
     return this.http.get<any>(url,  {
       withCredentials: false
     });

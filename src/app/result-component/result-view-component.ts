@@ -31,6 +31,7 @@ export class ResultViewComponent implements OnInit {
     this.currentId = this.authService.getCurrentUser().id;
     this.sessionId = this.route.snapshot.queryParams.sessionId;
     this.getResults();
+    this.getSpecifications();
   }
 
   getResults() {
@@ -40,6 +41,8 @@ export class ResultViewComponent implements OnInit {
   }
 
   getSpecifications() {
-
+    this.resultService.getSpecificationDetailsForSession(this.sessionId).subscribe(
+       content => this.selectedSpecificationDetails = content.content
+    );
   }
 }
