@@ -14,3 +14,4 @@ export class ConfigService {
     return this.getEnvironmentVariable('apiUrl');
   }
 }
+
