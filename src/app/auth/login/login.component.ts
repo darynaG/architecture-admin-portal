@@ -1,17 +1,22 @@
-import { Component } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { Router,
          NavigationExtras } from '@angular/router';
 import { AuthService } from '../auth.service';
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {log} from "util";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css', './login.component.less'],
 })
 export class LoginComponent {
   message: string;
+  form: FormGroup;
 
-  constructor(public authService: AuthService, public router: Router) {
+  constructor(public authService: AuthService,
+              public router: Router,
+              private fb: FormBuilder) {
     this.setMessage();
   }
 
@@ -19,31 +24,48 @@ export class LoginComponent {
     this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
   }
 
+  ngOnInit() {
+    this.initForm();
+  }
+
+  initForm() {
+  this.form = this.fb.group({
+      login_input: ['', []],
+      password_input: ['', []]
+    });
+  }
+
   login() {
     this.message = 'Trying to log in ...';
 
-    this.authService.login().subscribe(() => {
-      this.setMessage();
-      if (this.authService.isLoggedIn) {
-        // Get the redirect URL from our auth service
-        // If no redirect has been set, use the default
-        let redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/admin';
+    const model = {
+      username: this.form.value.login_input,
+      password: this.form.value.password_input
+    };
 
-        // Set our navigation extras object
-        // that passes on our global query params and fragment
-        let navigationExtras: NavigationExtras = {
+    log('login: ', model.username,  'password: ', model.password);
+
+    this.authService.login(model).subscribe(() => {
+      this.authService.isLoggedIn = true;
+      this.setMessage();
+
+      const redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/task';
+      const navigationExtras: NavigationExtras = {
           queryParamsHandling: 'preserve',
           preserveFragment: true
         };
 
-        // Redirect the user
-        this.router.navigateByUrl(redirect, navigationExtras);
-      }
-    });
+      this.router.navigateByUrl(redirect, navigationExtras);
+    },
+    error => {
+
+    }
+    );
   }
 
   logout() {
     this.authService.logout();
+    this.authService.isLoggedIn = false;
     this.setMessage();
   }
 }
