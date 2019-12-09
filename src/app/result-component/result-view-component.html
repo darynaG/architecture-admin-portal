@@ -1,4 +1,4 @@
-<div>
+<div style="margin-left: 10%; margin-right: 10%">
   <mat-card class="specification-details-container">
       <mat-card-title>Тема:  {{selectedSpecificationDetails.name}}</mat-card-title>
       <mat-card-content class="spec-content">
@@ -32,14 +32,22 @@
       </mat-card-content>
     <div class="result-container">
 
-    <div class="result-block">
-      your score: {{result.score}}
+    <div class="result-block" >
+      <div class="result-mark" style="font-size:30px ">{{result.score}}
+      </div>
+      your score
     </div>
     <div class="result-block">
-      percentage: {{result.percentage}}%
+      <div class="result-mark" style="font-size:30px">
+        {{result.percentage}}%
+      </div>
+      percentage
     </div>
     <div class="result-block">
-      passing score: {{result.passingScore}}
+      <div class="result-mark" style="font-size:30px">
+        {{result.passingScore}}
+      </div>
+      passing score
     </div>
   </div>
   </mat-card>
@@ -47,7 +55,7 @@
 </div>
 
 <div class = "bottom-actions">
-  <button mat-raised-button>
+  <button color="primary" style = "margin-right: 10%" mat-raised-button>
     Почати ще раз
   </button>
 </div>
