@@ -1,8 +1,11 @@
 .bottom-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   padding-top: 18px;
   padding-right: 8px;
+  margin-right: 9vw;
+  font-size: xx-large;
+  padding-top: 5vh;
 }
 .specification-details-container {
   margin: auto;
@@ -10,11 +13,22 @@
 .left-container {
   width: 65%;
   justify-content: left;
+  font-size: larger;
+  padding-left: 2vw;
+  border-right: 1px solid black;
+  padding-top: 2vh;
+  max-height: 150px;
+  height: 150px;
+  overflow: auto;
 }
 .right-container {
   justify-content: right;
+  padding-left: 2vw;
+  font-size: large;
+  display: flex;
+  flex-direction: column;
 }
 .spec-content {
   display: flex;
 }
-/*# sourceMappingURL=result-view-component.cssss.map */
+/*# sourceMappingURL=test-view-component.css.map */

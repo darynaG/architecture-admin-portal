@@ -1,9 +1,23 @@
 <div>
   <mat-card class="specification-details-container">
-      <mat-card-title>results</mat-card-title>
+      <mat-card-title>Тема:  {{selectedSpecificationDetails.name}}</mat-card-title>
       <mat-card-content class="spec-content">
         <div class="left-container">
-          <h1>left</h1>
+          <h2>Ви завершили тестування!</h2>
+          <p style="width: 55%; font-size: 20px;">{{setMessage()}} </p>
+          <div class="spec-details">
+            <mat-list>
+              <mat-list-item>
+                Час проходження: {{selectedSpecificationDetails.attempts}}
+              </mat-list-item>
+              <mat-list-item>
+                Залишилось спроб: {{selectedSpecificationDetails.attempts}}/3
+              </mat-list-item>
+              <mat-list-item>
+                Найкраща оцінка: {{selectedSpecificationDetails.score}}
+              </mat-list-item>
+            </mat-list>
+          </div>
         </div>
         <div class="right-container">
           <div *ngIf="result.passed === true" class="icon-container">
@@ -15,11 +29,24 @@
           </mat-icon>
         </div>
         </div>
-
       </mat-card-content>
+    <div class="result-container">
+    <div class="result-block">
+      your score: {{result.score}}
+    </div>
+    <div class="result-block">
+      percentage: {{result.percentage}}%
+    </div>
+    <div class="result-block">
+      passing score: {{result.passingScore}}
+    </div>
+  </div>
   </mat-card>
 
 </div>
 
 <div class = "bottom-actions">
+  <button mat-raised-button>
+    Почати ще раз
+  </button>
 </div>

@@ -18,9 +18,11 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class ResultViewComponent implements OnInit, AfterViewInit {
   selectedSpecificationDetails: SpecificationDetails;
   result: TestResult;
+
   specificationId: number;
   sessionId: number;
   currentId: number;
+  message: string;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -57,7 +59,17 @@ export class ResultViewComponent implements OnInit, AfterViewInit {
 
   getSpecifications() {
     this.resultService.getSpecificationDetailsForSession(this.sessionId).subscribe(
-       content => this.selectedSpecificationDetails = content.content
-    );
+       content => {
+         this.selectedSpecificationDetails = content.content;
+       } );
+
+  }
+
+  setMessage() {
+    if (this.result.passed) {
+      return 'Вам вдалося успішно пройти тестування!\nЯкщо бажаєте покращити оцінку - спробуйте ще раз!\n Бажаємо удачі!';
+    } else {
+      return 'Вам не вдалося успішно пройти тестування!\nЯкщо бажаєте покращити оцінку - спробуйте ще раз!\n Бажаємо удачі!';
+    }
   }
 }

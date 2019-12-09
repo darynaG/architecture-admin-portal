@@ -6,6 +6,7 @@
 }
 .specification-details-container {
   margin: auto;
+  margin-top: 50px;
 }
 .left-container {
   width: 65%;
@@ -23,5 +24,19 @@
 }
 .icon-container {
   justify-content: right;
+}
+.result-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.result-block {
+  border: solid;
+  border-color: gainsboro;
+  width: inherit;
+  height: 70px;
+  font-size: larger;
+  text-align: center;
+  padding-top: 15px;
 }
 /*# sourceMappingURL=result-view-component.css.map */

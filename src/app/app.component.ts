@@ -10,7 +10,7 @@ import {AuthenticationService, User} from './auth/auth.service';
 export class AppComponent {
   currentUser: User;
 
-  title = 'AngularCrudOperations';
+  title = 'VirtualLaboratory.ua';
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService
