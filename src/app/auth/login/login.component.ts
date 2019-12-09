@@ -5,7 +5,10 @@ import { AuthenticationService } from '../auth.service';
 import {MatSnackBar} from '@angular/material';
 
 
-@Component({ templateUrl: 'login.component.html' })
+@Component({
+  templateUrl: 'login.component.html',
+  styleUrls: ['login.component.less'],
+})
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;

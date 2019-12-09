@@ -1,52 +1,43 @@
-body {font-family: Arial, Helvetica, sans-serif;}
-
-/* Full-width input fields */
-input[type=text], input[type=password] {
-  width: 300%;
-  padding: 12px 20px;
-  margin: 0px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 50%;
-}
-
-button:hover {
-  opacity: 0.8;
-}
-
-/*span.psw {
-  float: left;
-  padding-top: 16px;
-}
-
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #f44336;
-}
-
-.example-form {
-  min-width: 200px;
-  max-width: 200px;
-  width: 100%;
-}
-
-.basic-container {
-  padding: 0px;
-}*/
-
 /*
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
+.modal-container {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 45vw;
+  min-width: 250px;
+}
+
+.add-currency-form {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+.mat-dialog-container {
+  padding: 240px !important;
+}
+
+.modal-container mat-dialog-content mat-list mat-list-item {
+  width: 200%;
+  padding: 3px 0 2px 0;
+  margin-top: 0px;
+}
+.mat-dialog-content {
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.modal__field{
+  width: 90%;
+  padding: 0 5px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 5px;
+}
+
 */
+/*# sourceMappingURL=login.component.css.map */

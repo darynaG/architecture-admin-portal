@@ -13,7 +13,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule, MatSelectModule,
-  MatSnackBarModule
+  MatSnackBarModule, MatTooltipModule
 } from '@angular/material';
 
 import {MatTableModule} from '@angular/material';
@@ -59,7 +59,8 @@ import {ResultViewComponent} from './result-component/result-view-component';
     MatSnackBarModule,
     MatInputModule,
     MatSelectModule,
-    AuthModule
+    AuthModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

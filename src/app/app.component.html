@@ -1,17 +1,18 @@
 <div style="margin-left: 10%; margin-right: 10%;">
-  <h1>This is start page</h1>
     <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
       <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/admin" routerLinkActive="active">Admin page </a>
-        <a class="nav-item nav-link" routerLink="/test" routerLinkActive="active"> Start test</a>
-        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+            <a class="nav-item nav-link" routerLink="/admin" routerLinkActive="active"
+            matTooltip="Необхідно мати права адміна, аби переглядати цю сторінку. Ввійдіть під іншим обліковим записом!">Admin page </a>
+            <a class="nav-item nav-link" routerLink="/test" routerLinkActive="active">Start test</a>
+
+          <div class="login-container">
+            <a class="nav-item nav-link" (click)="logout()">Logout</a>
+          </div>
       </div>
     </nav>
   <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="!currentUser">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/admin" routerLinkActive="active">Admin page </a>
-      <a class="nav-item nav-link" routerLink="/test" routerLinkActive="active"> Start test</a>
-      <a class="nav-item nav-link" routerLink="/register" routerLinkActive="active"> Registration</a>
+      <a class="nav-item nav-link" routerLink="/register" routerLinkActive="active">Registration</a>
       <a class="nav-item nav-link" routerLink="/login">Login</a>
     </div>
   </nav>

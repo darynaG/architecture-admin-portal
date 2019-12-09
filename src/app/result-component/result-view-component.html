@@ -2,8 +2,20 @@
   <mat-card class="specification-details-container">
       <mat-card-title>results</mat-card-title>
       <mat-card-content class="spec-content">
-        <div>{{result.passed}}</div>
-        <div>{{result.percentage}}%</div>
+        <div class="left-container">
+          <h1>left</h1>
+        </div>
+        <div class="right-container">
+          <div *ngIf="result.passed === true" class="icon-container">
+            <mat-icon class="cell-icon" svgIcon = "positive" aria-hidden="false">
+            </mat-icon>
+          </div>
+          <div *ngIf="result.passed === false" class="icon-container">
+          <mat-icon class="cell-icon" svgIcon = "negative" aria-hidden="false">
+          </mat-icon>
+        </div>
+        </div>
+
       </mat-card-content>
   </mat-card>
 

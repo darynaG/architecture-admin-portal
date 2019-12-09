@@ -1,4 +1,4 @@
-import {Component,  OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ResultService} from './result-view-component.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -6,6 +6,8 @@ import {Specification} from '../admin-view/Specification';
 import {AuthenticationService} from '../auth/auth.service';
 import {SpecificationDetails, TestResult} from '../task-component/Task';
 import {TestService} from '../test-component/test-view-component.service';
+import {MatIconRegistry} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-result-view-component',
@@ -13,7 +15,7 @@ import {TestService} from '../test-component/test-view-component.service';
   styleUrls: ['result-view-component.less'],
 })
 
-export class ResultViewComponent implements OnInit {
+export class ResultViewComponent implements OnInit, AfterViewInit {
   selectedSpecificationDetails: SpecificationDetails;
   result: TestResult;
   specificationId: number;
@@ -25,13 +27,26 @@ export class ResultViewComponent implements OnInit {
               private route: ActivatedRoute,
               private testService: TestService,
               private resultService: ResultService,
-              private authService: AuthenticationService) {}
+              private authService: AuthenticationService,
+              private iconRegistry: MatIconRegistry,
+              private sanitizer: DomSanitizer) {
+    iconRegistry.addSvgIcon(
+      'positive',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/images/positive-vote.icon.svg'));
+    iconRegistry.addSvgIcon(
+      'negative',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/images/negative-vote.icon.svg'));
+  }
 
   ngOnInit() {
     this.currentId = this.authService.currentUserValue.id;
     this.sessionId = this.route.snapshot.queryParams.sessionId;
     this.getResults();
     this.getSpecifications();
+  }
+
+  ngAfterViewInit() {
+
   }
 
   getResults() {
