@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {CdkDragDropConnectedSortingExampleComponent} from './task-component/task-view-component';
-import {AdminViewComponent} from './admin-view/admin-view.component';
 import { AuthGuard } from './auth/auth.guard';
 import {TestViewComponent} from './test-component/test-view-component';
 import {ResultViewComponent} from './result-component/result-view-component';
@@ -18,7 +17,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'test',
-    component: TestViewComponent
+    component: TestViewComponent,
+    canLoad: [AuthGuard]
   },
   {
     path: 'test/result',

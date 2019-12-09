@@ -5,7 +5,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import { Router } from '@angular/router';
 import {AdminViewService} from '../admin-view/admin-view-component.service';
 import {Specification, SpecificationCollection} from '../admin-view/Specification';
-import {AuthService} from '../auth/auth.service';
+import {AuthenticationService} from '../auth/auth.service';
 import {SpecificationDetails} from '../task-component/Task';
 
 
@@ -34,11 +34,16 @@ export class TestViewComponent implements OnInit {
               private service: TestService,
               private adminService: AdminViewService,
               private testService: TestService,
-              private authService: AuthService) {}
+              private authService: AuthenticationService) {}
 
   ngOnInit() {
     this.initForm();
-    this.currentId = this.authService.getCurrentUser().id;
+    if (this.authService.currentUserValue) {
+      this.currentId = this.authService.currentUserValue.id;
+    } else {
+      this.router.navigate(['/login']);
+
+    }
   }
 
   startTest($event) {

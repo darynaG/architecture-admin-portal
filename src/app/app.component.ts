@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
+import {AuthenticationService, User} from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,18 @@ import {RouterOutlet} from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  currentUser: User;
+
   title = 'AngularCrudOperations';
-  getAnimationData(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService
+  ) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
   }
 }

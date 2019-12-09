@@ -1,39 +1,59 @@
-import { Component } from '@angular/core';
-import { Router,
-  NavigationExtras } from '@angular/router';
-import { AuthService } from '../auth.service';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {
+  Router,
+  NavigationExtras, ActivatedRoute
+} from '@angular/router';
+import {AuthenticationService} from '../auth.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css', './register.component.less']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   form: FormGroup;
-  constructor(public authService: AuthService,
+
+  loading = false;
+  submitted = false;
+  returnUrl: string;
+  error = '';
+
+  constructor(public authService: AuthenticationService,
               public router: Router,
+              private route: ActivatedRoute,
               private fb: FormBuilder) {
   }
 
   ngOnInit() {
     this.initForm();
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
   }
 
   initForm() {
     this.form = this.fb.group({
-      email_input: ['', []],
-      login_input: ['', []],
-      password_input: ['', []],
+      email: ['', Validators.required],
+      login: ['', Validators.required],
+      password: ['', Validators.required],
     });
   }
 
+  get f() { return this.form.controls; }
+
   register() {
-    this.authService.isLoggedIn = false;
+    // this.authService.isLoggedIn = false;
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.loading = true;
     const model = {
-      email: this.form.value.email_input,
-      login: this.form.value.login_input,
-      password: this.form.value.password_input
+      email: this.f.email.value,
+      login: this.f.login.value,
+      password: this.f.password.value
     };
 
     this.authService.register(model).subscribe(() => {
@@ -46,8 +66,8 @@ export class RegisterComponent {
         this.router.navigateByUrl(redirect, navigationExtras);
       },
       error => {
-
-      }
-    );
+        this.error = error;
+        this.loading = false;
+      });
   }
 }

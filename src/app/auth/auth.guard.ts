@@ -7,17 +7,17 @@ import {
   NavigationExtras,
   CanLoad, Route
 } from '@angular/router';
-import { AuthService } from './auth.service';
+import {AuthenticationService} from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthenticationService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const url: string = state.url;
-
+    console.log('canActivate', 'URL', url, this.authService.currentUserValue);
     return this.checkLogin(url);
   }
 
@@ -32,25 +32,33 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   }
 
   checkLogin(url: string): boolean {
-    if (this.authService.isLoggedIn) { return true; }
+    if (this.authService.currentUserValue) {
+      return this.checkPermission(url);
+    }
 
     // Store the attempted URL for redirecting
     this.authService.redirectUrl = url;
 
-    // Create a dummy session id
-    const sessionId = 123456789;
-    const userId = 1;
-
-    // Set our navigation extras object
-    // that contains our global query params and fragment
     const navigationExtras: NavigationExtras = {
-      queryParams: { session_id: sessionId, user_id: userId },
+      queryParams: { returnUrl: url },
       fragment: 'anchor'
     };
 
     // Navigate to the login page with extras
     this.router.navigate(['/login'], navigationExtras);
     return false;
+  }
+
+  checkPermission(url: string) {
+    if (url === '/admin') {
+      if (this.authService.currentUserValue.username === 'admin') {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
   }
 }
 

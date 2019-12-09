@@ -6,10 +6,12 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot_password/forgot_password.component';
 import { AuthRoutingModule } from './auth-routing.module';
-import {MatDialogModule} from "@angular/material/dialog";
-import {MatListModule} from "@angular/material/list";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatCardModule} from "@angular/material/card";
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatListModule} from '@angular/material/list';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material';
+import {MatButtonModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -20,7 +22,9 @@ import {MatCardModule} from "@angular/material/card";
     ReactiveFormsModule,
     MatListModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule
   ],
   declarations: [
     LoginComponent,

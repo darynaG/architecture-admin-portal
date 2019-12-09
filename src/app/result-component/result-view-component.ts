@@ -3,7 +3,7 @@ import {ResultService} from './result-view-component.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Specification} from '../admin-view/Specification';
-import {AuthService} from '../auth/auth.service';
+import {AuthenticationService} from '../auth/auth.service';
 import {SpecificationDetails, TestResult} from '../task-component/Task';
 import {TestService} from '../test-component/test-view-component.service';
 
@@ -25,10 +25,10 @@ export class ResultViewComponent implements OnInit {
               private route: ActivatedRoute,
               private testService: TestService,
               private resultService: ResultService,
-              private authService: AuthService) {}
+              private authService: AuthenticationService) {}
 
   ngOnInit() {
-    this.currentId = this.authService.getCurrentUser().id;
+    this.currentId = this.authService.currentUserValue.id;
     this.sessionId = this.route.snapshot.queryParams.sessionId;
     this.getResults();
     this.getSpecifications();

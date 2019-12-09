@@ -1,14 +1,14 @@
-<div class="modal-container">
+<!--<div class="modal-container">
   <h2 mat-dialog-title>Вхід    {{message}}</h2>
   <mat-dialog-content>
-    <form [formGroup]="form">
+ &lt;!&ndash;   <form [formGroup]="form">
       <mat-list>
         <mat-list-item>
-          <label for="uname"><b>Логін:</b></label>
+          <label for="loginInput"><b>Логін:</b></label>
         </mat-list-item>
           <mat-list-item>
           <mat-form-field class="example-full-width">
-            <input matInput id="login_input"
+            <input matInput id="loginInput"
                    placeholder="Логін"
                    formControlName="login_input"
                     type="text">
@@ -17,7 +17,7 @@
           </mat-form-field>
         </mat-list-item>
           <mat-list-item>
-          <label for="uname"><b>Пароль:</b></label>
+          <label for="password_input"><b>Пароль:</b></label>
           </mat-list-item>
             <mat-list-item>
           <mat-form-field class="basic-container">
@@ -30,17 +30,78 @@
           </mat-form-field>
         </mat-list-item>
       </mat-list>
+    </form>&ndash;&gt;
+    <form [formGroup]="form">
+        <mat-list>
+          <mat-list-item>
+            <mat-form-field class="modal__field">
+              <input matInput id="loginInput"
+                     type="text"
+                     placeholder="text"
+                     formControlName="loginInput">
+              <mat-error *ngIf="form.controls['loginInput'].errors">It's required field. Please, add name.
+              </mat-error>
+            </mat-form-field>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-form-field class="modal__field">
+              <input matInput id="passwordInput"
+                     placeholder="password"
+                     type="password"
+                     formControlName="passwordInput">
+              <mat-error *ngIf="form.controls['passwordInput'].errors">It's required field. Please, add name.
+              </mat-error>
+            </mat-form-field>
+          </mat-list-item>
+        </mat-list>
+
+      <div class="actions">
+        <button class="mat-raised-button" (click)="login()">Увійти</button>
+        <button class="mat-raised-button mat-primary" (click)="logout()">Вийти</button>
+      </div>
+      <span class="psw">Забули <a href="forgot_password">пароль?</a></span>
     </form>
   </mat-dialog-content>
-</div>
-  <br/>
-  <button (click)="login()" *ngIf="!authService.currentUserValue">Увійти</button>
+</div>-->
+
+<!--<button (click)="login()" *ngIf="!authService.currentUserValue">Увійти</button>
 <button (click)="logout()" *ngIf="authService.currentUserValue">Вийти</button>
-<br/>
-  <span class="psw">Забули <a href="forgot_password">пароль?</a></span>
+
+  <span class="psw">Забули <a href="forgot_password">пароль?</a></span>-->
 
 <!--
 Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that
 can be found in the LICENSE file at http://angular.io/license
 -->
+
+<div class="col-md-6 offset-md-3 mt-5">
+  <div class="card">
+    <h4 class="card-header">Login</h4>
+    <div class="card-body">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input id= "username" type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Обов'язкове поле</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input id="password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Обов'язкове поле</div>
+          </div>
+        </div>
+        <button [disabled]="loading" class="btn btn-primary">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Login
+        </button>
+        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+      </form>
+      <div class="psw"> <a href="forgot_password">Забули пароль?</a></div>
+      <div class="psw"> <a href="register">Зареєструватись</a></div>
+    </div>
+  </div>
+</div>

@@ -1,78 +1,66 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import { Router,
-         NavigationExtras } from '@angular/router';
-import { AuthService } from '../auth.service';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {log} from "util";
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationService } from '../auth.service';
+import {MatSnackBar} from '@angular/material';
 
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css', './login.component.less'],
-})
-export class LoginComponent {
-  message: string;
-  form: FormGroup;
 
-  constructor(public authService: AuthService,
-              public router: Router,
-              private fb: FormBuilder) {
-    this.setMessage();
-  }
+@Component({ templateUrl: 'login.component.html' })
+export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
+  loading = false;
+  submitted = false;
+  returnUrl: string;
+  error = '';
 
-  setMessage() {
-    this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService,
+  ) {
+    // redirect to home if already logged in
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(['/']);
+    }
   }
 
   ngOnInit() {
-    this.initForm();
-  }
-
-  initForm() {
-  this.form = this.fb.group({
-      login_input: ['', []],
-      password_input: ['', []]
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
+
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
   }
 
-  login() {
-    this.message = 'Trying to log in ...';
+  // convenience getter for easy access to form fields
+  get f() { return this.loginForm.controls; }
+
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
 
     const model = {
-      username: this.form.value.login_input,
-      password: this.form.value.password_input
+      username: this.f.username.value,
+      password: this.f.password.value
     };
 
-    log('login: ', model.username,  'password: ', model.password);
-
-    this.authService.login(model).subscribe(() => {
-      this.authService.isLoggedIn = true;
-      this.setMessage();
-
-      const redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/task';
-      const navigationExtras: NavigationExtras = {
-          queryParamsHandling: 'preserve',
-          preserveFragment: true
-        };
-
-      this.router.navigateByUrl(redirect, navigationExtras);
-    },
-    error => {
-
-    }
-    );
-  }
-
-  logout() {
-    this.authService.logout();
-    this.authService.isLoggedIn = false;
-    this.setMessage();
+    this.authenticationService.login(model)
+      .subscribe(
+        data => {
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          this.error = `Неправильний логін або пароль!`;
+          this.loading = false;
+        });
   }
 }
-
-
-/*
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/
