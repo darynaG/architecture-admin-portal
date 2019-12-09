@@ -1,5 +1,7 @@
 .login-container {
   float: right;
+  margin-right: 0px;
+  margin-left: auto;
 }
 .left-container {
   float: left;
@@ -7,4 +9,9 @@
 .nav-container {
   display: flex;
   flex-direction: row;
+
+
+}
+.nav-bar{
+
 }

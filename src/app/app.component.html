@@ -1,6 +1,6 @@
-<div style="margin-left: 10%; margin-right: 10%;">
+<div>
     <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-      <div class="navbar-nav">
+      <div class="navbar-nav" style="font-size: x-large;width: 100vw;">
             <a class="nav-item nav-link" routerLink="/admin" routerLinkActive="active"
             matTooltip="Необхідно мати права адміна, аби переглядати цю сторінку. Ввійдіть під іншим обліковим записом!">Admin page </a>
             <a class="nav-item nav-link" routerLink="/test" routerLinkActive="active">Start test</a>
@@ -11,9 +11,9 @@
       </div>
     </nav>
   <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="!currentUser">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/register" routerLinkActive="active">Registration</a>
-      <a class="nav-item nav-link" routerLink="/login">Login</a>
+    <div class="navbar-nav" style="font-size: x-large;margin-left: auto;">
+      <a class="nav-item nav-link " routerLink="/register" routerLinkActive="active">Registration</a>
+      <a class="nav-item nav-link " routerLink="/login">Login</a>
     </div>
   </nav>
 
