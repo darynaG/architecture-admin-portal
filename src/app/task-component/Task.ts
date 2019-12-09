@@ -39,6 +39,7 @@ export class TestResult {
   passed: boolean;
   passingScore: number;
   percentage: number;
+  time: string;
 }
 export class TestAnswer {
   requirementsUnselected: Requirement[];
