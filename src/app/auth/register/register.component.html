@@ -13,9 +13,10 @@
         </div>
         <div class="form-group">
           <label style="padding-right: 16%" for="email">Email</label>
-          <input id= "email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+          <input id= "email" type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
           <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
             <div *ngIf="f.email.errors.required">Обов'язкове поле</div>
+            <div *ngIf="f.email.errors.email">Введіть справжній Email</div>
           </div>
         </div>
         <div class="form-group">

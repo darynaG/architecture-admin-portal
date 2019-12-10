@@ -68,8 +68,23 @@ export class AdminViewService {
 
   createRequirement(specificationId: number, model): Observable<any> {
     const url = ConfigService.getApiUrl() + `/api/specification/${specificationId}/requirement`;
-    console.log(model)
     return this.http.put<any>(url, model, {
+      withCredentials: false
+    });
+  }
+
+  // for statistics and user account card
+
+  getUserDetails(accountId): Observable<any> {
+    const url = ConfigService.getApiUrl() + `/api/accounts/${accountId}/details`;
+    return this.http.get<any>(url, {
+      withCredentials: false
+    });
+  }
+
+  getUserStatistics(accountId): Observable<any> {
+    const url = ConfigService.getApiUrl() + `/api/accounts/${accountId}/statistics`;
+    return this.http.get<any>(url, {
       withCredentials: false
     });
   }

@@ -4,6 +4,7 @@ import {CdkDragDropConnectedSortingExampleComponent} from './task-component/task
 import { AuthGuard } from './auth/auth.guard';
 import {TestViewComponent} from './test-component/test-view-component';
 import {ResultViewComponent} from './result-component/result-view-component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 const appRoutes: Routes = [
   {
@@ -23,6 +24,10 @@ const appRoutes: Routes = [
   {
     path: 'test/result',
     component: ResultViewComponent
+  },
+  {
+    path: 'account',
+    component: DashboardComponent
   },
   { path: '',   redirectTo: '/test', pathMatch: 'full' }
 ];

@@ -31,12 +31,20 @@
   flex-direction: row;
 }
 .result-block {
+  margin: auto;
   border: solid;
   border-color: gainsboro;
   width: inherit;
-  height: 70px;
+  height: 12vh;
   font-size: larger;
   text-align: center;
   padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 15px;
+}
+.result-mark {
+  font-size: 20px;
 }
 /*# sourceMappingURL=result-view-component.css.map */

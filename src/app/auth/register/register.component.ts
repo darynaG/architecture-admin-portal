@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
 
   initForm() {
     this.form = this.fb.group({
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       login: ['', Validators.required],
       password: ['', Validators.required],
     });
@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigateByUrl(redirect, navigationExtras);
       },
       error => {
-        this.error = error;
+        this.error = `Виникла помилка під час реєстрації. Можливо, ви вже зареєстровані?`;
         this.loading = false;
       });
   }

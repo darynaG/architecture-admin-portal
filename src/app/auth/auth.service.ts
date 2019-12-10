@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {ConfigService} from '../../config.service';
+import {Time} from '@angular/common';
+import DateTimeFormat = Intl.DateTimeFormat;
 
 
 @Injectable({ providedIn: 'root' })
@@ -53,6 +55,15 @@ export class AuthenticationService {
 export class User {
   id: number;
   username: string;
+  email: string;
   password: string;
   token?: string;
+}
+
+export class UserDetails {
+  username: string;
+  email: string;
+  tests: number;
+  themes: number;
+  time: string;
 }

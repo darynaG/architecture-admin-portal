@@ -59,7 +59,6 @@
 .bottom-actions {
   display: flex;
   justify-content: flex-end;
-  padding-top: 18px;
   padding-right: 8px;
 }
 .mat-raised-button {

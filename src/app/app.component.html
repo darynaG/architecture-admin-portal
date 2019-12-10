@@ -2,18 +2,19 @@
     <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
       <div class="navbar-nav" style="font-size: x-large;width: 100vw;">
             <a class="nav-item nav-link" routerLink="/admin" routerLinkActive="active"
-            matTooltip="Необхідно мати права адміна, аби переглядати цю сторінку. Ввійдіть під іншим обліковим записом!">Admin page </a>
-            <a class="nav-item nav-link" routerLink="/test" routerLinkActive="active">Start test</a>
+            matTooltip="Необхідно мати права адміна, аби переглядати цю сторінку. Ввійдіть під іншим обліковим записом!">Адмін портал </a>
+            <a class="nav-item nav-link" routerLink="/test" routerLinkActive="active">Тестування</a>
+        <a class="nav-item nav-link" routerLink="/account" routerLinkActive="active">Мій кабінет</a>
 
-          <div class="login-container">
-            <a class="nav-item nav-link" (click)="logout()">Logout</a>
+        <div class="login-container">
+            <a class="nav-item nav-link" (click)="logout()" routerLinkActive="active">Вийти</a>
           </div>
       </div>
     </nav>
   <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="!currentUser">
     <div class="navbar-nav" style="font-size: x-large;margin-left: auto;">
-      <a class="nav-item nav-link " routerLink="/register" routerLinkActive="active">Registration</a>
-      <a class="nav-item nav-link " routerLink="/login">Login</a>
+      <a class="nav-item nav-link " routerLink="/register" routerLinkActive="active">Зареєструватись</a>
+      <a class="nav-item nav-link " routerLink="/login">Ввійти</a>
     </div>
   </nav>
 

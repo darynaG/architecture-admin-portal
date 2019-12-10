@@ -26,6 +26,7 @@ import {AddRequirementModalComponent} from './admin-view/add-requirement-modal/a
 import {AuthModule} from './auth/auth.module';
 import {TestViewComponent} from './test-component/test-view-component';
 import {ResultViewComponent} from './result-component/result-view-component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {ResultViewComponent} from './result-component/result-view-component';
     AddSpecificationModalComponent,
     AddRequirementModalComponent,
     TestViewComponent,
-    ResultViewComponent
+    ResultViewComponent,
+    DashboardComponent
   ],
   entryComponents: [
     AddSpecificationModalComponent,
