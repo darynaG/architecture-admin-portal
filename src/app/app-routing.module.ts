@@ -29,7 +29,7 @@ const appRoutes: Routes = [
     path: 'account',
     component: DashboardComponent
   },
-  { path: '',   redirectTo: '/test', pathMatch: 'full' }
+  { path: '',   redirectTo: '/account', pathMatch: 'full' }
 ];
 
 @NgModule({
