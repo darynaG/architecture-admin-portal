@@ -1,11 +1,11 @@
-<div class="row">
-  <div class="col-md-4">
+<div class="row" style="height: 70vh; margin-top:10vh; scroll-behavior: smooth;">
+  <div class="col-md-3">
   </div>
-  <div class="col-md-4">
+  <div class="col-md-6">
     <div class="card card-user">
       <div class="card-body">
         <div class="author">
-            <img class="avatar border-gray" src="assets/images/mike.jpg" alt="...">
+            <img class="avatar border-gray" src="assets/images/mike.png" alt="...">
             <h5 class="title">@{{user.username}}</h5>
           <a href="#">
           <p class="description">
@@ -21,83 +21,39 @@
         <hr>
         <div class="button-container">
           <div class="row">
-            <div class="col-lg-3 col-md-6 col-6 ml-auto">
-              <h5>{{user.tests}}
-                <br>
-                <small>Тести</small>
-              </h5>
+            <div class="col-lg-3 col-md-6 col-6 mr-auto user-block">
+              <h5>{{user.tests}}</h5>
+              <h6>Тести</h6>
             </div>
-            <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
-              <h5>{{user.themes}}
-                <br>
-                <small>Теми</small>
-              </h5>
+            <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto user-block">
+              <h5>{{user.themes}}</h5>
+              <h6>Теми</h6>
             </div>
-            <div class="col-lg-3 mr-auto">
-              <h5>{{user.time}}
-                <br>
-                <small>Час</small>
-              </h5>
+            <div class="col-lg-3 mr-auto user-block">
+              <h5>{{user.time}}</h5>
+              <h6>Час</h6>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-3">
   </div>
+  <button (click)="scrollBtn()"  class="btn-scroll"><mat-icon style="font-size: 60px">
+    expand_more
+  </mat-icon></button>
 </div>
-<!--<div class="row">
-  <div class="col-md-12">
-    <div class="card ">
-      <div class="card-header ">
-        <h5 class="card-title">Users Behavior</h5>
-        <p class="card-category">24 Hours performance</p>
-      </div>
-      <div class="card-body ">
-        <canvas id=chartHours width="400" height="100"></canvas>
-      </div>
-      <div class="card-footer ">
-        <hr>
-        <div class="stats">
-          <i class="fa fa-history"></i> Updated 3 minutes ago
-        </div>
-      </div>
-    </div>
-  </div>
-</div>-->
+
 <div class="row">
- <!-- <div class="col-md-4">
-    <div class="card ">
-      <div class="card-header ">
-        <h5 class="card-title">Email Statistics</h5>
-        <p class="card-category">Last Campaign Performance</p>
-      </div>
-      <div class="card-body ">
-        <canvas id="chartEmail"></canvas>
-      </div>
-      <div class="card-footer ">
-        <div class="legend">
-          <i class="fa fa-circle text-primary"></i> Opened
-          <i class="fa fa-circle text-warning"></i> Read
-          <i class="fa fa-circle text-danger"></i> Deleted
-          <i class="fa fa-circle text-gray"></i> Unopened
-        </div>
-        <hr>
-        <div class="stats">
-          <i class="fa fa-calendar"></i> Number of emails sent
-        </div>
-      </div>
-    </div>
-  </div>-->
-  <div class="col-md-12">
-    <div class="card card-chart">
+  <div class="col-md-12" >
+    <div class="card card-chart" id="scrollMe">
       <div class="card-header">
         <h5 class="card-title">Твоя статистика</h5>
         <p class="card-category">Графік</p>
       </div>
-      <div class="card-body">
-        <canvas id="speedChart" width="400" height="100" ></canvas>
+      <div class="card-body" style="height: 80vh;">
+        <canvas id="speedChart" width="400" height="180" ></canvas>
       </div>
       <div class="card-footer">
         <div class="chart-legend">

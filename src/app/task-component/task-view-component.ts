@@ -74,6 +74,6 @@ export class CdkDragDropConnectedSortingExampleComponent implements OnInit {
       requirements: this.types
     }
     this.service.cancelTask(this.sessionId, this.taskId, model)
-      .subscribe(() => console.log(this.taskId, model));
+      .subscribe(() => this.router.navigate(['/test']));
   }
 }

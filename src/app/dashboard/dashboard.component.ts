@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import Chart from 'chart.js';
 import {AuthenticationService, ChartDetails, User, UserDetails} from '../auth/auth.service';
 import {AdminViewService} from '../admin-view/admin-view-component.service';
@@ -21,6 +21,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   private user: UserDetails;
 
   chartData: ChartData;
+  @ViewChild('scrollMe', {static: false}) private myScrollContainer: ElementRef;
+
 
   // TODO can't read data from json, Value is undefined after subscribe
     constructor(private authService: AuthenticationService,
@@ -62,7 +64,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       borderColor: '#fbc658',
       backgroundColor: 'transparent',
       pointBorderColor: '#fbc658',
-      pointRadius: 4,
+      pointRadius: 1,
       pointHoverRadius: 4,
       pointBorderWidth: 8,
     };
@@ -73,7 +75,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       borderColor: '#51CACF',
       backgroundColor: 'transparent',
       pointBorderColor: '#51CACF',
-      pointRadius: 4,
+      pointRadius: 3,
       pointHoverRadius: 4,
       pointBorderWidth: 8
     };
@@ -96,6 +98,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       data: speedData,
       options: chartOptions
     });
+  }
+
+  scrollBtn() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    window.scrollTo(0,1000);
   }
 }
 export class ChartData {

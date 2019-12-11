@@ -21,8 +21,7 @@ export class TaskService {
   }
 
   cancelTask(sessionId, id, model) {
-    const url = ConfigService.getApiUrl() + `/api/session/${sessionId}/task/${id}`;
-
+    const url = ConfigService.getApiUrl() + `/api/session/${sessionId}/cancel`;
     return this.http.post<TaskElement>(url, model, {
       withCredentials: false
     });

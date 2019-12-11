@@ -20,11 +20,11 @@
         </div>
         <div class="right-container">
           <div style="display: inline;display: flex;flex-direction: row;">
-             <h5>Your best score:  </h5>
+             <h5>Найкраша оцінка:  </h5>
             <span style="padding-left: 0.5vw"> {{selectedSpecificationDetails.score}} </span>
           </div>
           <div style="display: inline;display: flex;flex-direction: row ">
-             <h5>Attempts left:  </h5>
+             <h5>Залишилось спроб:  </h5>
             <span style="padding-left: 0.5vw"> {{selectedSpecificationDetails.attempts}}/3 </span>
           </div>
         </div>
@@ -34,5 +34,5 @@
 </div>
 
 <div class = "bottom-actions">
-  <button mat-raised-button (click)="startTest($event)" [disabled]="shouldBeDisabled" color="primary" style="font-size: x-large;">Start</button>
+  <button mat-raised-button (click)="startTest($event)" [disabled]="shouldBeDisabled" color="primary" style="font-size: x-large;">Розпочати</button>
 </div>
