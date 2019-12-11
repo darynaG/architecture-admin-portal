@@ -4,6 +4,7 @@ import {ConfigService} from '../../config.service';
 import {Observable} from 'rxjs';
 import { SpecificationCollection} from './Specification';
 import {RequirementCollection} from './Requirement';
+import {ChartDetails} from '../auth/auth.service';
 
 
 @Injectable({

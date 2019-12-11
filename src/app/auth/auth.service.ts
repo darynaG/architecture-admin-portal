@@ -67,3 +67,9 @@ export class UserDetails {
   themes: number;
   time: string;
 }
+
+export class ChartDetails {
+  labels: [];
+  dataY: [];
+  data: [];
+}

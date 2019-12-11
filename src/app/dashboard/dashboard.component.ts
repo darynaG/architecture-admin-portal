@@ -1,7 +1,8 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import Chart from 'chart.js';
-import {AuthenticationService, User, UserDetails} from '../auth/auth.service';
+import {AuthenticationService, ChartDetails, User, UserDetails} from '../auth/auth.service';
 import {AdminViewService} from '../admin-view/admin-view-component.service';
+import {toArray} from 'rxjs/operators';
 
 
 @Component({
@@ -18,10 +19,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   public chartEmail;
   public chartHours;
   private user: UserDetails;
-  private dataY = [];
-  private data = [];
+  public data: [];
+  public dataY: [];
+  public labels: [];
 
-
+  // TODO can't read data from json, Value is undefined after subscribe
     constructor(private authService: AuthenticationService,
                 private service: AdminViewService) {}
 
@@ -42,169 +44,28 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       );
   }
 
-  getChartData()  {
-      this.service.getUserStatistics(this.authService.currentUserValue.id).subscribe(
-        content => {
-          this.dataY = content.dataY;
-          this.data = content.data;
-        }
-      );
-      // data - точечки на графіку, dataY - вісь
+  getChartData() {
+    this.service.getUserStatistics(this.authService.currentUserValue.id).subscribe(
+      content => {
+        this.dataY = content.dataY;
+        this.data = content. data;
+        this.labels = content.labels;
+      });
+    console.log('hghdgsgcjh');
+    console.log(this.dataY);
+    // data - точечки на графіку, dataY - вісь
 
-      // this.dataY = [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70];
-      // this.data = [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63];
+    this.dataY = [11, 26, 45, 11, 55, 45, 26];
+    this.labels = ['Автоматизації роботи оператора мобільного зв’язку', 'Автоматизаціія прокату весільних суконь', 'Система обліку використання тепла та гарячої води', 'Автоматизації роботи оператора мобільного зв’язку', 'Облік роботи рекламного агентства', 'Система обліку використання тепла та гарячої води', 'Автоматизаціія прокату весільних суконь' ];
+     // this.data = [0, 0, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63];
   }
 
   buildChart() {
     this.chartColor = '#FFFFFF';
 
-    /*this.canvas = document.getElementById('chartHours');
-    this.ctx = this.canvas.getContext('2d');
+    const speedCanvas = document.getElementById('speedChart');
 
-    this.chartHours = new Chart(this.ctx, {
-      type: 'line',
-
-      data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-        datasets: [{
-            borderColor: '#6bd098',
-            backgroundColor: '#6bd098',
-            pointRadius: 0,
-            pointHoverRadius: 0,
-            borderWidth: 3,
-            data: [300, 310, 316, 322, 330, 326, 333, 345, 338, 354]
-          },
-          {
-            borderColor: '#f17e5d',
-            backgroundColor: '#f17e5d',
-            pointRadius: 0,
-            pointHoverRadius: 0,
-            borderWidth: 3,
-            data: [320, 340, 365, 360, 370, 385, 390, 384, 408, 420]
-          },
-          {
-            borderColor: '#fcc468',
-            backgroundColor: '#fcc468',
-            pointRadius: 0,
-            pointHoverRadius: 0,
-            borderWidth: 3,
-            data: [370, 394, 415, 409, 425, 445, 460, 450, 478, 484]
-          }
-        ]
-      },
-      options: {
-        legend: {
-          display: false
-        },
-
-        tooltips: {
-          enabled: false
-        },
-
-        scales: {
-          yAxes: [{
-
-            ticks: {
-              fontColor: '#9f9f9f',
-              beginAtZero: false,
-              maxTicksLimit: 5,
-              // padding: 20
-            },
-            gridLines: {
-              drawBorder: false,
-              zeroLineColor: '#ccc',
-              color: 'rgba(255,255,255,0.05)'
-            }
-
-          }],
-
-          xAxes: [{
-            barPercentage: 1.6,
-            gridLines: {
-              drawBorder: false,
-              color: 'rgba(255,255,255,0.1)',
-              zeroLineColor: 'transparent',
-              display: false,
-            },
-            ticks: {
-              padding: 20,
-              fontColor: '#9f9f9f'
-            }
-          }]
-        },
-      }
-    });
-*/
-
-    /* this.canvas = document.getElementById('chartEmail');
-     this.ctx = this.canvas.getContext('2d');
-     this.chartEmail = new Chart(this.ctx, {
-       type: 'pie',
-       data: {
-         labels: [1, 2, 3],
-         datasets: [{
-           label: 'Emails',
-           pointRadius: 0,
-           pointHoverRadius: 0,
-           backgroundColor: [
-             '#e3e3e3',
-             '#4acccd',
-             '#fcc468',
-             '#ef8157'
-           ],
-           borderWidth: 0,
-           data: [342, 480, 530, 120]
-         }]
-       },
-
-       options: {
-
-         legend: {
-           display: false
-         },
-
-         pieceLabel: {
-           render: 'percentage',
-           fontColor: ['white'],
-           precision: 2
-         },
-
-         tooltips: {
-           enabled: false
-         },
-
-         scales: {
-           yAxes: [{
-
-             ticks: {
-               display: false
-             },
-             gridLines: {
-               drawBorder: false,
-               zeroLineColor: 'transparent',
-               color: 'rgba(255,255,255,0.05)'
-             }
-
-           }],
-
-           xAxes: [{
-             barPercentage: 1.6,
-             gridLines: {
-               drawBorder: false,
-               color: 'rgba(255,255,255,0.1)',
-               zeroLineColor: 'transparent'
-             },
-             ticks: {
-               display: false,
-             }
-           }]
-         },
-       }
-     });
-*/
-    let speedCanvas = document.getElementById('speedChart');
-
-    let dataFirst = {
+    const dataFirst = {
       data: this.dataY,
       fill: false,
       borderColor: '#fbc658',
@@ -215,8 +76,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       pointBorderWidth: 8,
     };
 
-    let dataSecond = {
-      data: this.data,
+    const dataSecond = {
+      data: this.dataY,
       fill: false,
       borderColor: '#51CACF',
       backgroundColor: 'transparent',
@@ -226,19 +87,19 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       pointBorderWidth: 8
     };
 
-    let speedData = {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-      datasets: [dataFirst, dataSecond]
+    const speedData = {
+      labels: this.labels,
+      datasets: [dataFirst]
     };
 
-    let chartOptions = {
+    const chartOptions = {
       legend: {
         display: false,
         position: 'top'
       }
     };
 
-    let lineChart = new Chart(speedCanvas, {
+    const lineChart = new Chart(speedCanvas, {
       type: 'line',
       hover: false,
       data: speedData,
