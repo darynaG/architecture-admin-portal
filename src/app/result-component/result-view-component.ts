@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Specification} from '../admin-view/Specification';
 import {AuthenticationService} from '../auth/auth.service';
-import {SpecificationDetails, TestResult} from '../task-component/Task';
+import {SpecificationDetails, TestAnswer, TestResult} from '../task-component/Task';
 import {TestService} from '../test-component/test-view-component.service';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -71,5 +71,10 @@ export class ResultViewComponent implements OnInit, AfterViewInit {
     } else {
       return 'Вам не вдалося успішно пройти тестування!\nЯкщо бажаєте покращити оцінку - спробуйте ще раз!\n Бажаємо удачі!';
     }
+  }
+  onClick() {
+
+        this.router.navigate(['/test']);
+
   }
 }
