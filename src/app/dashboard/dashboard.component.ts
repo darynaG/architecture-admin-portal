@@ -19,8 +19,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   public chartEmail;
   public chartHours;
   private user: UserDetails;
-  public data: [];
-  public labels: [];
+
+  chartData: ChartData;
 
   // TODO can't read data from json, Value is undefined after subscribe
     constructor(private authService: AuthenticationService,
@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-      this.buildChart();
+
   }
 
   getUserData() {
@@ -46,24 +46,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   getChartData() {
     this.service.getUserStatistics(this.authService.currentUserValue.id).subscribe(
       content => {
-        this.data = content. data;
-        this.labels = content.labels;
+        this.chartData = content;
+        this.buildChart();
       });
-
-    // data - точечки на графіку, dataY - вісь
-
-    this.data = [11, 26, 45, 11, 55, 45, 26];
-    this.labels = ['Автоматизації роботи оператора мобільного зв’язку', 'Автоматизаціія прокату весільних суконь', 'Система обліку використання тепла та гарячої води', 'Автоматизації роботи оператора мобільного зв’язку', 'Облік роботи рекламного агентства', 'Система обліку використання тепла та гарячої води', 'Автоматизаціія прокату весільних суконь' ];
-     // this.data = [0, 0, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63];
   }
 
   buildChart() {
-    this.chartColor = '#FFFFFF';
+      this.chartColor = '#FFFFFF';
 
-    const speedCanvas = document.getElementById('speedChart');
+      const speedCanvas = document.getElementById('speedChart');
 
-    const dataFirst = {
-      data: this.data,
+      const dataFirst = {
+      data: this.chartData.data,
       fill: false,
       borderColor: '#fbc658',
       backgroundColor: 'transparent',
@@ -73,8 +67,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       pointBorderWidth: 8,
     };
 
-    const dataSecond = {
-      data: this.data,
+      const dataSecond = {
+      data: this.chartData.data,
       fill: false,
       borderColor: '#51CACF',
       backgroundColor: 'transparent',
@@ -84,23 +78,27 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       pointBorderWidth: 8
     };
 
-    const speedData = {
-      labels: this.labels,
+      const speedData = {
+      labels: this.chartData.labels,
       datasets: [dataFirst]
     };
 
-    const chartOptions = {
+      const chartOptions = {
       legend: {
         display: false,
         position: 'top'
       }
     };
 
-    const lineChart = new Chart(speedCanvas, {
+      const lineChart = new Chart(speedCanvas, {
       type: 'line',
       hover: false,
       data: speedData,
       options: chartOptions
     });
   }
+}
+export class ChartData {
+  data: [];
+  labels: [];
 }

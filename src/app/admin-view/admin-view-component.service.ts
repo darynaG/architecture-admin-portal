@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import { SpecificationCollection} from './Specification';
 import {RequirementCollection} from './Requirement';
 import {ChartDetails} from '../auth/auth.service';
+import {ChartData} from '../dashboard/dashboard.component';
 
 
 @Injectable({
@@ -83,9 +84,9 @@ export class AdminViewService {
     });
   }
 
-  getUserStatistics(accountId): Observable<any> {
+  getUserStatistics(accountId): Observable<ChartData> {
     const url = ConfigService.getApiUrl() + `/api/accounts/${accountId}/statistics`;
-    return this.http.get<any>(url, {
+    return this.http.get<ChartData>(url, {
       withCredentials: false
     });
   }
