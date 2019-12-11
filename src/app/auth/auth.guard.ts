@@ -51,7 +51,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
   checkPermission(url: string) {
     if (url === '/admin') {
-      if (this.authService.currentUserValue.username === 'admin') {
+      if (this.authService.currentUserValue.username === 'Administrator') {
         return true;
       } else {
         return false;
