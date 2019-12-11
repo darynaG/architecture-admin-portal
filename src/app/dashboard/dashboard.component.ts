@@ -20,7 +20,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   public chartHours;
   private user: UserDetails;
   public data: [];
-  public dataY: [];
   public labels: [];
 
   // TODO can't read data from json, Value is undefined after subscribe
@@ -47,15 +46,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   getChartData() {
     this.service.getUserStatistics(this.authService.currentUserValue.id).subscribe(
       content => {
-        this.dataY = content.dataY;
         this.data = content. data;
         this.labels = content.labels;
       });
-    console.log('hghdgsgcjh');
-    console.log(this.dataY);
+
     // data - точечки на графіку, dataY - вісь
 
-    this.dataY = [11, 26, 45, 11, 55, 45, 26];
+    this.data = [11, 26, 45, 11, 55, 45, 26];
     this.labels = ['Автоматизації роботи оператора мобільного зв’язку', 'Автоматизаціія прокату весільних суконь', 'Система обліку використання тепла та гарячої води', 'Автоматизації роботи оператора мобільного зв’язку', 'Облік роботи рекламного агентства', 'Система обліку використання тепла та гарячої води', 'Автоматизаціія прокату весільних суконь' ];
      // this.data = [0, 0, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63];
   }
@@ -66,7 +63,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     const speedCanvas = document.getElementById('speedChart');
 
     const dataFirst = {
-      data: this.dataY,
+      data: this.data,
       fill: false,
       borderColor: '#fbc658',
       backgroundColor: 'transparent',
@@ -77,7 +74,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     };
 
     const dataSecond = {
-      data: this.dataY,
+      data: this.data,
       fill: false,
       borderColor: '#51CACF',
       backgroundColor: 'transparent',
