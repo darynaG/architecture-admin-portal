@@ -3,6 +3,7 @@ import Chart from 'chart.js';
 import {AuthenticationService, ChartDetails, User, UserDetails} from '../auth/auth.service';
 import {AdminViewService} from '../admin-view/admin-view-component.service';
 import {toArray} from 'rxjs/operators';
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 @Component({
@@ -12,25 +13,23 @@ import {toArray} from 'rxjs/operators';
 })
 
 export class DashboardComponent implements OnInit, AfterViewInit {
+    public chartColor;
+    private user: UserDetails;
 
-  public canvas: any;
-  public ctx;
-  public chartColor;
-  public chartEmail;
-  public chartHours;
-  private user: UserDetails;
+    chartData: ChartData;
 
-  chartData: ChartData;
-  @ViewChild('scrollMe', {static: false}) private myScrollContainer: ElementRef;
-
-
-  // TODO can't read data from json, Value is undefined after subscribe
     constructor(private authService: AuthenticationService,
-                private service: AdminViewService) {}
+                private service: AdminViewService,
+                private router: Router) {}
 
     ngOnInit() {
-      this.getUserData();
-      this.getChartData();
+      if (this.authService.currentUserValue) {
+        this.getUserData();
+        this.getChartData();
+      } else {
+        this.router.navigate(['/login']);
+
+      }
   }
 
   ngAfterViewInit() {

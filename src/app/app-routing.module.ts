@@ -27,7 +27,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'account',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canLoad: [AuthGuard]
   },
   { path: '',   redirectTo: '/account', pathMatch: 'full' }
 ];
